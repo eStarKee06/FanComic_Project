@@ -19,6 +19,8 @@ class CreateUsersTable extends Migration
             $table->string("email")->unique;
             $table->string("username")->unique;
             $table->string("password");
+            $table->string("hash");
+            $table->boolean("active")->default(false);
             $table->rememberToken(); //protects against remember me attacks; different token every session
         });
     }

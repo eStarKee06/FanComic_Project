@@ -15,23 +15,41 @@ use Illuminate\Http\Request;
 
 
 //vue set up
+//Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');
+
+Route::post('/signUp', 'UserController@store');
+Route::post('/signIn', 'UserController@show');
+Route::get('/verify/{id}', 'UserController@verifyUser');
+
+
+Route::get("/sessionExists",'UserController@sessionExists');
+
+Route::get('/works', 'WorkController@index');
+Route::get('/works/{id}', 'WorkController@show');
+Route::post('/create-work', 'WorkController@store');
+Route::post('/edit-work/{id}', 'WorkController@edit');
+
+Route::get("profile/{id}", 'UserController@show');
+Route::get("profile/{id}/works", 'WorkController@showByUser');
+
+Route::get('/signOut', 'UserController@signOut');
+/*Route::post('/edit-work/{id}', function(Request $request){
+    print $request;
+});*/
+
 Route::get('/{any}', 'SinglePageController@index')->where('any', '.*');
 
 //----------------------------------------USERS-----------------------
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/explore', function (Request $request) {
     print($request->session()->get("USER"));
     return view('explore');
-});
+});*/
 
 
-Route::post('/signUp', 'UserController@store');
-Route::post('/signIn', 'UserController@show');
-
-Route::get('/signOut', 'UserController@signOut');
 
 //-----------------------WORK------------------------------------
 /*
@@ -50,5 +68,4 @@ route::get('/works/{id}/edit', function(){
 
 route::post('/works/{id}/edit', 'WorkController@edit');
 */
-Route::get('/works', 'WorkController@index');
 //route::post('edit', 'WorkController@edit');
