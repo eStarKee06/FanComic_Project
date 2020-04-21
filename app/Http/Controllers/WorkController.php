@@ -17,7 +17,8 @@ class WorkController extends BaseController
         $work = new Work();
         $work->title = $request["title"];
         $work->description = $request["description"];
-        $work->genre = $request["genre"];
+        $work->genres = serialize($request["genres"]);
+        $work->rating = $request["rating"];
         echo($request->session()->get("USER"));
         $work->user_id = (Sessions::getUserSession());
         $work->save();
@@ -43,6 +44,12 @@ class WorkController extends BaseController
 
     //-------------------------------------------------------------
     public function showByUser($user_id){
-        return Works::where("user_id", $user_id)->get();
+        $workList = Work::where("user_id", $user_id)->get();
+        
+        for($i=0; $i < count($workList) ; $i++){
+            $workList[$i]->genres = unserialize($workList[$i]->genres);
+        }
+        
+        return $workList;
     }
 }

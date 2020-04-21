@@ -5,12 +5,15 @@
             <div class="col-4"> Genre</div>
             <div class="col-4"> Description</div>
         </div>
-        <div class="row" v-for="(work, i) in workList" :key="i">
-            <div class="col-4"> {{work.title}}</div>
-            <div class="col-4"> {{work.genre}}</div>
-            <div class="col-4"> {{work.description}}</div>
+        <div v-if="workList != null">
+            <div class="row" v-for="(work, i) in workList" :key="i">
+                <div class="col-4"> {{work.title}}</div>
+                <div v-for="(genre, i) in work.genres" :key="i">
+                    {{genre}}
+                </div>
+                <div class="col-4"> {{work.description}}</div>
+            </div>
         </div>
-        <button @click="editWork">Edit</button>
     </div>
 </template>
 
@@ -20,12 +23,21 @@ export default {
     
     },
     data(){
-        workList: null
+        return{
+            workList: null
+        }
     },
     mounted(){
-        axios.get("profile/"+ this.$router.currentRoute.params.id +"/works").then((response)=>{
+        /*axios.get("profile/"+ this.$router.currentRoute.params.id +"/works").then((response)=>{
+            this.workList = response.data;
+            console.log(response.data);
+        });*/
+        
+        //this is hardcoded, change it later
+        axios.get("profile/1/works").then((response)=>{
             this.workList = response.data;
         });
+        
     }
 }
 </script>

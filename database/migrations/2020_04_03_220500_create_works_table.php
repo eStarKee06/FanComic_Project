@@ -18,7 +18,8 @@ class CreateWorksTable extends Migration
             $table->timestamps();
             $table->string("title");
             $table->string("description");
-            $table->string("genre");
+            $table->string("genres"); // turn this into an array later
+            $table->string("rating"); // turn this into an array later
             $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
