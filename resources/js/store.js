@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import SignInUp from "./stores/modules/SignInUp.js"
+import workDisplay from "./stores/modules/workDisplay.js"
 import axios from "axios";
 
 Vue.use(Vuex);
@@ -16,7 +16,7 @@ export const store = new Vuex.Store({
   mutations,
   actions,
   modules: {
-    SignInUp
+    workDisplay  
   }
 });
 

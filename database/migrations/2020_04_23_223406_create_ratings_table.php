@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateChaptersTable extends Migration
+class CreateRatingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateChaptersTable extends Migration
      */
     public function up()
     {
-        Schema::create('chapters', function (Blueprint $table) {
+        Schema::create('ratings', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string("chapter_title");
-            $table->bigInteger("chapter_number");
-            $table->bigInteger("num_of_pages");
             
+            $table->string("rating_title");
             $table->bigInteger('work_id')->unsigned()->nullable();
             $table->foreign('work_id')->references('id')->on('works')->onDelete('cascade');
         });
@@ -32,6 +30,6 @@ class CreateChaptersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('chapters');
+        Schema::dropIfExists('ratings');
     }
 }

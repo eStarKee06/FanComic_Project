@@ -19,7 +19,8 @@
                 <div class="col-9 h-100 p-0">
                     <div class="card" id="content">
                         <createWork v-if="activeItem == 1"></createWork>
-                        <workList v-if="activeItem == 0"></workList>
+                        <!--<workList v-if="activeItem == 0"></workList>-->
+                        <workDisplay></workDisplay>
                     </div>
                 </div>
             </div>
@@ -32,13 +33,15 @@
 import logging from "./logging.vue"
 import createWork from "./createWork.vue"
 import profile from "./Profile.vue"
-import workList from "./workList.vue"
+import workDisplay from "./workDisplay/index.vue"
+//import workList from "./workList.vue"
 export default {
     components:{
         logging,
         createWork,
         profile,
-        workList
+        workDisplay
+        //workList
     },
     data(){
         return{

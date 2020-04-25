@@ -29,6 +29,13 @@ Route::get('/works/{id}', 'WorkController@show');
 Route::post('/create-work', 'WorkController@store');
 Route::post('/edit-work/{id}', 'WorkController@edit');
 
+Route::post('/add_chapter', 'ChaptersController@store');
+Route::get("works/{id}/chapters", 'ChaptersController@showChaptersByWork');
+
+
+Route::post('/create-page', 'PagesController@store');
+
+
 Route::get("profile/{id}", 'UserController@show');
 Route::get("profile/{id}/works", 'WorkController@showByUser');
 

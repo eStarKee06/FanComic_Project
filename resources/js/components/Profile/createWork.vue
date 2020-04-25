@@ -39,6 +39,7 @@
                     <button class="btn btn-primary" @click="ratingsDropDownOpen = !ratingsDropDownOpen">
                         Ratings: {{ratings}}
                     </button>
+                    <input type="file" ref="coverImage" @change="handleCoverImage()"/>
                     <div v-if="ratingsDropDownOpen">
                         <li class="list-group-item" @click="setRatings('general')">General</li>
                         <li class="list-group-item" @click="setRatings('teens')">Teens</li>
@@ -59,6 +60,7 @@ export default{
             newDescription: "",
             genreArr: [],
             ratings: "general",
+            coverImage: null,
             ratingsDropDownOpen: false
         }
     },
@@ -70,9 +72,23 @@ export default{
             axios.post("/edit-work/" + this.workId, {"title": this.newTitle,
             "description": this.newDescription,"genre":this.newGenre});
         }*/
+        handleCoverImage(){
+            this.coverImage = this.$refs.coverImage.files[0];
+            //check for the type of file using last three letters
+        },
         createWork(){
-            axios.post("/create-work", {"title": this.newTitle,
-            "description": this.newDescription,"genres": this.genreArr, "rating": this.ratings});
+            console.log(this.coverImage);
+            let formData = new FormData();
+            formData.append('title', this.newTitle);
+            formData.append('description', this.newDescription);
+            formData.append('genres', JSON.stringify(this.genreArr));
+            formData.append('rating', this.ratings);
+            formData.append('coverImage', this.coverImage);
+            /*axios.post("/create-work", {"title": this.newTitle,
+            "description": this.newDescription,"genres": this.genreArr, "rating": this.ratings,
+            "coverImage": this.coverImage}, {headers: {'Content-Type': 'multipart/form-data'}});
+            */
+           axios.post("/create-work", formData, {headers: {'Content-Type': 'multipart/form-data'}});
         },
         setRatings(rating){
             this.ratings = rating;

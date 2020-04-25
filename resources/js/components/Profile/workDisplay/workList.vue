@@ -6,18 +6,16 @@
             <div class="col-4"> Description</div>
         </div>
         <div v-if="workList != null">
-            <div class="row" v-for="(work, i) in workList" :key="i">
+            <div class="row" v-for="(work, idx) in workList" :key="idx" @click="clickWorkListing(idx)">
                 <div class="col-4"> {{work.title}}</div>
-                <div v-for="(genre, i) in work.genres" :key="i">
-                    {{genre}}
-                </div>
-                <div class="col-4"> {{work.description}}</div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+
+import { mapActions, mapGetters } from "vuex";
 export default {
     components:{
     
@@ -38,6 +36,22 @@ export default {
             this.workList = response.data;
         });
         
+    },
+    computed:{
+        ...mapGetters({
+            getEditProcessState: "getEditProcessState",
+            getWorkSelected: "getWorkSelected"
+        })
+    },
+    methods:{
+        ...mapActions({
+            setEditProcessState: "setEditProcessState",
+            setWorkSelected: "setWorkSelected"
+        }),
+        clickWorkListing(index){
+            this.setEditProcessState(1);
+            this.setWorkSelected(this.workList[index]);
+        }
     }
 }
 </script>
