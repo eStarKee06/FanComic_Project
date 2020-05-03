@@ -40,11 +40,14 @@ export default {
         });*/
         
         //this is hardcoded, change it later
+        this.getWorks();
+        
+    },
+    created(){
         axios.get("works/" + this.getWorkSelected.id +"/chapters").then((response)=>{
             this.chapterList = response.data;
             console.log(this.chapterList);
-        });
-        
+        });       
     },
     computed:{
         ...mapGetters({
@@ -62,6 +65,13 @@ export default {
         makeNewChapter(){
             console.log(this.getWorkSelected);
             axios.post("/add_chapter", {"workId": this.getWorkSelected.id, "chapterTitle": this.chapterTitle});
+            this.getWorks();
+        },
+        getWorks(){
+            axios.get("works/" + this.getWorkSelected.id +"/chapters").then((response)=>{
+                this.chapterList = response.data;
+                console.log(this.chapterList);
+            });      
         },
         addPages(index){
             this.setChapterSelected(this.chapterList[index]);

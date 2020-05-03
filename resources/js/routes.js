@@ -9,6 +9,8 @@ import ExploreIndex from './components/Explore/index.vue';
 import Edit from './components/Explore/Edit.vue';
 
 import Profile from './components/Profile/index.vue';
+
+import componentTest from './components/ComponentTest/index.vue';
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -52,6 +54,11 @@ const router = new VueRouter({
             path:"/profile",
             name: "Profile",
             component: Profile
+        },
+        {
+            path:"/component-tests",
+            name: "Test",
+            component: componentTest
         },
     ]
 

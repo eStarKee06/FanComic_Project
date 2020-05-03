@@ -8,6 +8,7 @@
         <div v-if="workList != null">
             <div class="row" v-for="(work, idx) in workList" :key="idx" @click="clickWorkListing(idx)">
                 <div class="col-4"> {{work.title}}</div>
+                <img :src="work.cover_image"/>
             </div>
         </div>
     </div>
