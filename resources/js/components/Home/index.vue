@@ -1,25 +1,24 @@
 <template>
     <div>
-        <div id="signIn-Up-tab">
-            <ul class="list-group list-group-horizontal">
-                <li class="list-group-item" @click="signInUpActiveItem = 0">Sign In</li>
-                <li class="list-group-item" @click="signInUpActiveItem = 1">Sign Up</li>
-            </ul>
-            <div class="card" id="signIn-Up-tab2">
-                <signIn v-show="signInUpActiveItem == 0"></signIn>
-                <signUp v-show="signInUpActiveItem == 1"></signUp>
+        <homeStarter></homeStarter>
+        <div class="second-background pt-5">
+            <genreDescription/>
+            <div class="rating-description-bg my-5">
+
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import signIn from "./signIn.vue"
-import signUp from "./signUp.vue"
+import homeStarter from "./homeStarter/index.vue"
+
+
+import genreDescription from "./genreDescription/index.vue"
 export default {
     components:{
-        signIn,
-        signUp
+        homeStarter,
+        genreDescription
     },
     data(){
         return{
@@ -29,12 +28,19 @@ export default {
 }
 </script>
 
-<style>
-    #signIn-Up-tab{
-        width: 20%;
+<style lang="scss" scoped>
+@import "./../../../sass/theme.scss";
+    .second-background{
+        position: absolute;
+        top: 600px;
+        width: 100%;
+        height: 1000px;
+        background-color: $white;
     }
-    #signIn-Up-tab2{
-        height: 30%;
-        text-align: center;
+    .rating-description-bg{
+        position: absolute;
+        height: 300px;
+        width: 100%;
+        background-color: $theme-highlight;
     }
 </style>

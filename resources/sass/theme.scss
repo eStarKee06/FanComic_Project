@@ -1,0 +1,70 @@
+
+$theme-red: #ff266e;
+$theme-blue: #59f1ff;
+$theme-green: #7effb4;
+$theme-gray: #c3c3c3;
+$theme-gold: #a58966;
+
+
+
+$rating-general: #0cc98a;
+$rating-teen: #0d8eff;
+$rating-mature: #ff1919;
+$positive: #00c8ff;
+$negative: #f70c00;
+
+$gray: #1d1d1f;
+$black : black;
+$white: white;
+
+$theme-highlight: #c29f78;
+$theme-highlight2: #e69439;
+
+
+$genre-romance: #db8ab2;
+$genre-drama:  #4073a6;
+$genre-comedy: #75dbbd;
+$genre-action: #bf4c40;
+$genre-mystery: #995266;
+$genre-historical: #57d97d;
+$genre-sciFi:#5ce647;
+$genre-sports:#4c73ff;
+$genre-horror: #6d0026;
+
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px $gray; 
+    
+    background: $white; 
+    border-radius: 5px;
+  }
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: $gray; 
+    border-radius: 5px;
+  }
+  /* Handle on hover 
+  ::-webkit-scrollbar-thumb:hover {
+    background: $theme-highlight; 
+  }*/
+
+
+:export{
+    genreRomance: $genre-romance;
+    genreDrama: $genre-drama;
+    genreComedy: $genre-comedy;
+    genreAction: $genre-action;
+    genreMystery: $genre-mystery; 
+    genreHistorical: $genre-historical;
+    genreSciFi: $genre-sciFi;
+    genreSports: $genre-sports;
+    genreHorror: $genre-horror;
+    ratingGeneral: $rating-general;
+    ratingTeen: $rating-teen;
+    ratingMature: $rating-mature;
+}
