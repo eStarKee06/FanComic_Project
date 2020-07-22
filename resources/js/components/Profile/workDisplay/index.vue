@@ -23,6 +23,8 @@ export default {
             stage: 0
         }
     },
+    mounted(){
+    },
     computed:{
         ...mapGetters({
             getEditProcessState: "getEditProcessState"
@@ -34,4 +36,4 @@ export default {
         }),
     }
 }
-</script>>
+</script>

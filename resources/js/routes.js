@@ -10,6 +10,11 @@ import Edit from './components/Explore/Edit.vue';
 
 import Profile from './components/Profile/index.vue';
 
+import signIn from './components/Logging/signIn.vue';
+import signUp from './components/Logging/signUp.vue';
+
+import newWork from './components/CreateWork/index.vue'
+import editWork from './components/EditWork/index.vue'
 import componentTest from './components/ComponentTest/index.vue';
 Vue.use(VueRouter);
 
@@ -59,6 +64,26 @@ const router = new VueRouter({
             path:"/component-tests",
             name: "Test",
             component: componentTest
+        },
+        {
+            path:"/signIn",
+            name: "signIn",
+            component: signIn
+        },
+        {
+            path:"/signUp",
+            name: "signUp",
+            component: signUp
+        },
+        {
+            path:"/newWork",
+            name: "new work",
+            component: newWork
+        },
+        {
+            path:"/works/:id/edit",
+            name: "edit",
+            component: editWork
         },
     ]
 

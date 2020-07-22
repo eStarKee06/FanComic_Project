@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-if="chapterList != null">
+        <!--<div v-if="chapterList != null">
             Chapter List <br/>
             <div v-for="(chapter, i) in chapterList" :key="i"
                 @click="addPages(i)">
@@ -15,13 +15,14 @@
             title: <br/>
             <input v-model="chapterTitle"/>
             <button @click="makeNewChapter()">submit</button>
-        </div> 
+        </div>-->
     </div>
 </template>
 
 <script>
 
 import { mapActions, mapGetters } from "vuex";
+import workListingSmall from "./../../ComponentTest/workListingSmall.vue"
 export default {
     components:{
     
@@ -30,7 +31,9 @@ export default {
         return{
             chapterList: null,
             showForm: false,
-            chapterTitle: ""
+            chapterTitle: "",
+
+
         }
     },
     mounted(){

@@ -21,9 +21,13 @@ Route::post('/signUp', 'UserController@store');
 Route::post('/signIn', 'UserController@show');
 Route::get('/verify/{id}', 'UserController@verifyUser');
 
+Route::get('/showWorkOfUser', "WorkController@showByUser");
 
-Route::get("/sessionExists",'UserController@sessionExists');
+Route::post('/create-work', 'WorkController@store');
 
+Route::post('/getWork/{id}', 'WorkController@show');
+//Route::get("/sessionExists",'UserController@sessionExists');
+/*
 Route::get('/works', 'WorkController@index');
 Route::get('/works/{id}', 'WorkController@show');
 Route::post('/create-work', 'WorkController@store');
@@ -31,13 +35,14 @@ Route::post('/edit-work/{id}', 'WorkController@edit');
 
 Route::post('/add_chapter', 'ChaptersController@store');
 Route::get("works/{id}/chapters", 'ChaptersController@showChaptersByWork');
+*/
 
+//Route::post('/create-page', 'PagesController@store');
 
-Route::post('/create-page', 'PagesController@store');
-
-
+/*
 Route::get("profile/{id}", 'UserController@show');
 Route::get("profile/{id}/works", 'WorkController@showByUser');
+*/
 
 Route::get('/signOut', 'UserController@signOut');
 /*Route::post('/edit-work/{id}', function(Request $request){

@@ -22,37 +22,37 @@ class WorkController extends BaseController
 {
      
     public function store(Request $request){
-        $work = new Work();
-        $work->title = $request["title"];
-        $work->description = $request["description"];
+        if(Sessions::userSessionIsSet()){
+            $work = new Work();
+            $work->title = $request["title"];
+            $work->description = $request["description"];
 
 
-        //$work->genres = serialize($request["genres"]);
-        //$work->rating = $request["rating"];
+            //$work->genres = serialize($request["genres"]);
+            //$work->rating = $request["rating"];
 
-        echo($request->session()->get("USER"));
-        $work->user_id = (Sessions::getUserSession());
+            $work->user_id = (Sessions::getUserSession());
 
-        $coverImagePath = $request->file('coverImage')->store("public/".$work->user_id."/".$work->title);
-        $work->cover_image = $coverImagePath; 
-        
-        $work->num_of_chapters = 0; 
+            $coverImagePath = $request->file('coverImage')->store("public/".$work->user_id."/".$work->title);
+            $work->cover_image = $coverImagePath; 
+            
+            $work->num_of_chapters = 0; 
 
-        $work->save();
+            $work->save();
 
-        $rating = new Ratings();
-        $rating->rating_title = $request["rating"];
-        $rating->work_id = $work->id;
-        $rating->save();
+            $rating = new Ratings();
+            $rating->rating_title = $request["rating"];
+            $rating->work_id = $work->id;
+            $rating->save();
 
-        $genresArr = json_decode($request["genres"]);
-        for($i = 0; $i < count($genresArr); $i++){
-            $genre = new Genres();
-            $genre->genre_title = $genresArr[$i];
-            $genre->work_id = $work->id;
-            $genre->save();
+            $genresArr = json_decode($request["genres"]);
+            for($i = 0; $i < count($genresArr); $i++){
+                $genre = new Genres();
+                $genre->genre_title = $genresArr[$i];
+                $genre->work_id = $work->id;
+                $genre->save();
+            }
         }
-
         return redirect("works");
         //$this->index();
     }
@@ -62,7 +62,13 @@ class WorkController extends BaseController
     }
 
     public function show($id){
-        return Work::where("id", (int)$id)->get();
+        $work = Work::where("id", (int)$id)->get()[0];
+        $work->cover_image = asset("storage/".$work->cover_image);
+        $work->rating = Ratings::where("work_id", $id)->get()[0]->rating_title;
+        $work->author = User::where("id", $work->user_id)->get()[0]->username;
+        $work->genres = Genres::where("work_id", $id)->get();
+
+        return $work;
     }
 
     
@@ -72,16 +78,18 @@ class WorkController extends BaseController
     }
 
     //-------------------------------------------------------------
-    public function showByUser($user_id){
-        $workList = Work::where("user_id", $user_id)->get();
-        
-        for($i=0; $i < count($workList) ; $i++){
-            //$workList[$i]->genres = unserialize($workList[$i]->genres);
-            $workList[$i]->cover_image = asset("storage/".$workList[$i]->cover_image);
+    public function showByUser(){
+        if(Sessions::userSessionIsSet()){
+            $user_id = (Sessions::getUserSession());
+            $workList = Work::where("user_id", $user_id)->get();
+            for($i=0; $i < count($workList) ; $i++){
+                $workList[$i]->cover_image = asset("storage/".$workList[$i]->cover_image);
+                $workList[$i]->rating = Ratings::where("work_id", $workList[$i]->id)->get()[0]->rating_title;
+            } 
+            return $workList;
         }
-        
-        return $workList;
     }
+
     //This should be on chapters
     public function addPage($request){
         PagesController::setPage($request["work_title"], $request["pageNumber"], $request->file('pageImage'));

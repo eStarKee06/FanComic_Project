@@ -2,7 +2,7 @@
     <div>
         <div class="container"  
             :class="rating == 'general' ? 'G-profile-work-border' : 
-                    rating == 'teen'  ? 'T-profile-work-border' :
+                    rating == 'teens'  ? 'T-profile-work-border' :
                     'M-profile-work-border'"
         >
             <div class="row d-flex">
@@ -12,16 +12,11 @@
                 <div class="col">
                     <div class="description d-flex justify-content-start row px-4 py-2">
                         <div class="description-contents">
-                            this is a description o
-                            f the ksdjf lksajdflfjksld
-                            j flks ajdfk ljsafsj d;jds
-                            ;lksa jdf;l ksajdfl ksajd;flk dfsa dfsadfs adf
-                            asadf sa df
-                            a df jahdsfjk ahsd fjkhdsa jakshdfjkhd fsa jhdsfjk
+                            {{work.description}}
                             </div>
                     </div>
                     <div class="title d-flex justify-content-center row">
-                        <div class="title-contents">hello my name is Ervey how are doing?</div>
+                        <div class="title-contents">{{work.title}}</div>
                     </div>
                 </div>
             </div>
@@ -117,7 +112,7 @@ export default {
         overflow: hidden;
         color: $white;
         font-size: 14px;
-        font-weight: bold;
+        //font-weight: bold;
         word-wrap: break-word;
     }
 </style>
@@ -127,14 +122,14 @@ export default {
 @import "./../../../sass/theme.scss";
     .G-profile-work-border .work-border{
         background-color: $rating-general;
-        box-shadow: 0 0 15px 3px $rating-general;
+        //box-shadow: 0 0 15px 3px $rating-general;
     }
     .G-profile-work-border .row .col .title{
         background-color: $rating-general;
-        box-shadow: 0 0 15px 3px $rating-general;
+        //box-shadow: 0 0 15px 3px $rating-general;
     }
     .G-profile-work-border .row .col .description .description-contents{
-        color: $rating-general;
+        color: $white;
     }
 </style>
 
@@ -142,14 +137,14 @@ export default {
 @import "./../../../sass/theme.scss";
     .T-profile-work-border .work-border{
         background-color: $rating-teen;
-        box-shadow: 0 0 15px 3px $rating-teen;
+        //box-shadow: 0 0 15px 3px $rating-teen;
     }
     .T-profile-work-border .row .col .title{
         background-color: $rating-teen;
-        box-shadow: 0 0 15px 3px $rating-teen;
+        //box-shadow: 0 0 15px 3px $rating-teen;
     }
     .T-profile-work-border .row .col .description .description-contents{
-        color: $rating-teen;
+        color: $white;
     }
 </style>
 
@@ -157,13 +152,13 @@ export default {
 @import "./../../../sass/theme.scss";
     .M-profile-work-border .work-border{
         background-color: $rating-mature;
-        box-shadow: 0 0 15px 3px $rating-mature;
+        //box-shadow: 0 0 15px 3px $rating-mature;
     }
     .M-profile-work-border .row .col .title{
         background-color: $rating-mature;
-        box-shadow: 0 0 15px 3px $rating-mature;
+        //box-shadow: 0 0 15px 3px $rating-mature;
     }
     .M-profile-work-border .row .col .description .description-contents{
-        color: $rating-mature;
+        color: $white;
     }
 </style>

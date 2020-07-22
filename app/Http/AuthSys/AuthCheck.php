@@ -27,17 +27,16 @@ class AuthCheck
     public static function sendVerificationEmail(string $email, string $userHash){
         
         $msg = "click below to verify account \n http://localhost:8000/verify/".$userHash; // TODO: change this later
-
-        Mail::send('accountVerificationEmail', array('msg' => $msg), function ($message) use ($email)
+        $subject = "Verify Email";
+        Mail::send('accountVerificationEmail', array('msg' => $msg), function ($message) use ($email, $subject)
         {
 
-            $message->from('artWorkspace@gmail.com', 'artWorkspace');
+            $message->from('keeprogramtester@gmail.com', 'artWorkspace');
 
-            $message->to($email);
+            $message->to($email)->subject($subject);
 
         });
 
     } 
-
 
 }

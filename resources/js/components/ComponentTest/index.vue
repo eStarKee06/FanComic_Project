@@ -29,6 +29,16 @@
             :styleType="0"></workListing> 
         </div>
 
+    
+            <genrePill class="m-5" :genreTitle="'romance'"/>
+            <genrePill class="m-5" :genreTitle="'comedy'"/>
+            <genrePill class="m-5" :genreTitle="'drama'"/>
+            <genrePill class="m-5" :genreTitle="'horror'"/>
+            <genrePill class="m-5" :genreTitle="'mystery'"/>
+            <genrePill class="m-5" :genreTitle="'sciFi'"/>
+            <genrePill class="m-5" :genreTitle="'sports'"/>
+            <genrePill class="m-5" :genreTitle="'action'"/>
+            <genrePill class="m-5" :genreTitle="'historical'"/>
         <div>
             <workListingSmall class="m-2" :work="dummyWork" :author="dummyAuthor" :rating="dummyRating" 
             :colorProp="colors[Math.floor(Math.random() * colors.length)]"
@@ -41,16 +51,19 @@
             <workListingSmall class="m-2" :work="dummyWork" :author="dummyAuthor" :rating="dummyRating3" 
             :colorProp="colors[Math.floor(Math.random() * colors.length)]"
             :styleType="0"></workListingSmall> 
+        
         </div>
     </div>
 </template>
 <script>
 import workListing from "./workListing.vue"
 import workListingSmall from "./workListingSmall.vue"
+import genrePill from "./genrePill.vue"
 export default {
     components:{
         workListing,
-        workListingSmall
+        workListingSmall,
+        genrePill
     },
     data(){
         return{
@@ -69,3 +82,6 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+</style>
